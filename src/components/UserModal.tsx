@@ -9,71 +9,74 @@ export function UserModal({ user, onClose }: UserModalProps) {
   if (!user) return null;
 
   return (
-    <div 
-      className="fixed inset-0 flex items-center justify-center z-50 animate-fadeIn" 
-      aria-modal="true" 
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto px-4 py-8"
+      aria-modal="true"
       role="dialog"
     >
       {/* Overlay */}
-      <div 
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300" 
-        onClick={onClose} 
+      <div
+        className="fixed inset-0 bg-black/70 backdrop-blur-md transition-opacity"
+        onClick={onClose}
         aria-hidden="true"
       ></div>
-      
+
       {/* Modal */}
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg mx-4 z-10 transform transition-all duration-300 animate-slideUp">
+      <div
+        className="relative w-full max-w-xl overflow-hidden rounded-3xl bg-white/80 shadow-2xl ring-1 ring-gray-200 backdrop-blur-lg
+                   dark:bg-neutral-800/90 dark:ring-neutral-700 animate-slideUp"
+      >
         {/* Header */}
-        <div className="relative bg-gradient-to-r from-blue-500 to-purple-600 rounded-t-2xl p-6 text-white">
+        <header className="relative rounded-t-3xl bg-linear-to-r from-blue-500 via-indigo-500 to-purple-600 p-6 text-white">
           <div className="flex items-center space-x-4">
-            <div className="size-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-2xl font-bold">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/20 text-xl font-bold backdrop-blur-sm">
               {user.name.charAt(0).toUpperCase()}
             </div>
             <div>
-              <h2 className="text-2xl font-bold">{user.name}</h2>
+              <h2 className="text-2xl font-bold text-shadow-sm">{user.name}</h2>
               <p className="text-white/80">@{user.username}</p>
             </div>
           </div>
-          <button 
-            onClick={onClose}
-            className="absolute top-4 right-4 text-white/80 hover:text-white hover:bg-white/20 rounded-full p-2 transition-all duration-200"
+          <button
             aria-label="Close"
+            onClick={onClose}
+            className="absolute right-4 top-4 flex size-8 items-center justify-center rounded-full text-white/80
+                       transition hover:bg-white/20 hover:text-white focus:outline-none"
           >
-            <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+            <svg className="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
-        </div>
-        
+        </header>
+
         {/* Body */}
-        <div className="p-6 space-y-6 max-h-96 overflow-y-auto">
+        <div className="max-h-[70vh] overflow-y-auto p-6 space-y-8">
           {/* Contact Information */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 flex items-center">
+          <section className="space-y-4">
+            <h3 className="flex items-center text-lg font-semibold text-gray-900 dark:text-gray-100">
               📞 Contact Information
             </h3>
-            <div className="grid grid-cols-1 gap-4">
-              <div className="bg-gray-50 rounded-xl p-4">
-                <p className="text-sm font-medium text-gray-500 mb-1">Email Address</p>
+            <div className="space-y-4">
+              <div className="rounded-2xl bg-white/70 p-4 ring-1 ring-gray-200 dark:bg-neutral-900/70 dark:ring-neutral-700">
+                <p className="mb-1 text-sm font-medium text-gray-500 dark:text-gray-400">Email Address</p>
                 <div className="flex items-center space-x-2">
-                  <span className="text-gray-900">{user.email}</span>
-                  <button 
+                  <span className="text-gray-900 dark:text-gray-100">{user.email}</span>
+                  <button
                     onClick={() => navigator.clipboard.writeText(user.email)}
-                    className="text-blue-500 hover:text-blue-600 transition-colors"
+                    className="text-blue-500 transition-colors hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500"
                     title="Copy email"
                   >
                     📋
                   </button>
                 </div>
               </div>
-              
-              <div className="bg-gray-50 rounded-xl p-4">
-                <p className="text-sm font-medium text-gray-500 mb-1">Phone Number</p>
+              <div className="rounded-2xl bg-white/70 p-4 ring-1 ring-gray-200 dark:bg-neutral-900/70 dark:ring-neutral-700">
+                <p className="mb-1 text-sm font-medium text-gray-500 dark:text-gray-400">Phone Number</p>
                 <div className="flex items-center space-x-2">
-                  <span className="text-gray-900">{user.phone}</span>
-                  <button 
+                  <span className="text-gray-900 dark:text-gray-100">{user.phone}</span>
+                  <button
                     onClick={() => navigator.clipboard.writeText(user.phone)}
-                    className="text-blue-500 hover:text-blue-600 transition-colors"
+                    className="text-blue-500 transition-colors hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500"
                     title="Copy phone"
                   >
                     📋
@@ -81,64 +84,71 @@ export function UserModal({ user, onClose }: UserModalProps) {
                 </div>
               </div>
             </div>
-          </div>
-          
+          </section>
+
           {/* Address */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 flex items-center">
+          <section className="space-y-4">
+            <h3 className="flex items-center text-lg font-semibold text-gray-900 dark:text-gray-100">
               📍 Address
             </h3>
-            <div className="bg-gray-50 rounded-xl p-4">
-              <div className="text-gray-900 leading-relaxed">
-                {user.address.street}, {user.address.suite}<br />
+            <div className="rounded-2xl bg-white/70 p-4 ring-1 ring-gray-200 dark:bg-neutral-900/70 dark:ring-neutral-700">
+              <p className="leading-relaxed text-gray-900 dark:text-gray-100">
+                {user.address.street}, {user.address.suite}
+                <br />
                 {user.address.city}, {user.address.zipcode}
-              </div>
+              </p>
             </div>
-          </div>
-          
+          </section>
+
           {/* Online Presence */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 flex items-center">
+          <section className="space-y-4">
+            <h3 className="flex items-center text-lg font-semibold text-gray-900 dark:text-gray-100">
               🌐 Online Presence
             </h3>
-            <div className="bg-gray-50 rounded-xl p-4">
-              <p className="text-sm font-medium text-gray-500 mb-2">Website</p>
-              <a 
+            <div className="rounded-2xl bg-white/70 p-4 ring-1 ring-gray-200 dark:bg-neutral-900/70 dark:ring-neutral-700">
+              <p className="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">Website</p>
+              <a
                 href={`https://${user.website}`}
-                target="_blank" 
+                target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200"
+                className="inline-flex items-center space-x-2 font-medium text-blue-600 transition-colors hover:text-blue-800
+                           dark:text-blue-400 dark:hover:text-blue-500"
               >
                 <span>{user.website}</span>
                 <svg className="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </a>
             </div>
-          </div>
-          
+          </section>
+
           {/* Company */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 flex items-center">
+          <section className="space-y-4">
+            <h3 className="flex items-center text-lg font-semibold text-gray-900 dark:text-gray-100">
               🏢 Company
             </h3>
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200">
-              <h4 className="font-semibold text-gray-900 mb-2">{user.company.name}</h4>
-              <p className="text-sm text-gray-600 italic">"{user.company.catchPhrase}"</p>
-              <p className="text-xs text-gray-500 mt-1">{user.company.bs}</p>
+            <div
+              className="rounded-2xl bg-linear-to-r from-blue-50 via-indigo-50 to-purple-50 p-4 ring-1 ring-blue-200
+                         dark:from-neutral-800/50 dark:via-neutral-800/40 dark:to-neutral-800/50 dark:ring-neutral-700"
+            >
+              <h4 className="mb-2 font-semibold text-gray-900 dark:text-gray-100">{user.company.name}</h4>
+              <p className="italic text-sm text-gray-600 dark:text-gray-400">"{user.company.catchPhrase}"</p>
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">{user.company.bs}</p>
             </div>
-          </div>
+          </section>
         </div>
-        
+
         {/* Footer */}
-        <div className="p-6 bg-gray-50 rounded-b-2xl">
+        <footer className="rounded-b-3xl bg-gray-50 p-6 dark:bg-neutral-900/80">
           <button
             onClick={onClose}
-            className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-4 focus:ring-blue-500/25 transition-all duration-300 transform hover:scale-105"
+            className="w-full rounded-lg bg-linear-to-r from-blue-500 via-indigo-500 to-purple-600 px-6 py-3 font-semibold text-white
+                       transition-transform duration-300 hover:scale-105 hover:from-blue-600 hover:via-indigo-600 hover:to-purple-700
+                       focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-500/25"
           >
             Close Profile
           </button>
-        </div>
+        </footer>
       </div>
     </div>
   );
