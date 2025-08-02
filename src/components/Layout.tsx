@@ -14,35 +14,29 @@ export function Layout() {
               </Link>
             </h1>
             
-            <nav className="bg-gray-100 rounded-full p-1">
-              <ul className="flex space-x-1">
-                <li>
-                  <Link 
-                    to="/" 
-                    className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                      location.pathname === '/' 
-                        ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg transform scale-105' 
-                        : 'text-gray-700 hover:bg-gray-200 hover:scale-105'
-                    }`}
-                    aria-current={location.pathname === '/' ? 'page' : undefined}
-                  >
-                    📊 User List
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    to="/add" 
-                    className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                      location.pathname === '/add' 
-                        ? 'bg-gradient-to-r from-green-500 to-teal-600 text-white shadow-lg transform scale-105' 
-                        : 'text-gray-700 hover:bg-gray-200 hover:scale-105'
-                    }`}
-                    aria-current={location.pathname === '/add' ? 'page' : undefined}
-                  >
-                    ➕ Add User
-                  </Link>
-                </li>
-              </ul>
+            <nav className="bg-gray-100 rounded-full p-1 grid grid-cols-2 gap-1">
+              <Link 
+                to="/" 
+                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                  location.pathname === '/' 
+                    ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg transform scale-105' 
+                    : 'text-gray-700 hover:bg-gray-200 hover:scale-105'
+                }`}
+                aria-current={location.pathname === '/' ? 'page' : undefined}
+              >
+                📊 User List
+              </Link>
+              <Link 
+                to="/add" 
+                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                  location.pathname === '/add' 
+                    ? 'bg-gradient-to-r from-green-500 to-teal-600 text-white shadow-lg transform scale-105' 
+                    : 'text-gray-700 hover:bg-gray-200 hover:scale-105'
+                }`}
+                aria-current={location.pathname === '/add' ? 'page' : undefined}
+              >
+                ➕ Add User
+              </Link>
             </nav>
           </div>
         </div>
