@@ -40,6 +40,11 @@ export function AddUserForm() {
     navigate('/');
   };
 
+  // Shared input classes to reduce redundancy
+  const inputBaseClasses = "w-full px-4 py-3 rounded-xl border-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-4 focus:outline-none transition-all duration-300";
+  const inputErrorClasses = "border-red-300 focus:border-red-500 focus:ring-red-500/20";
+  const inputNormalClasses = "border-gray-200 focus:border-blue-500 focus:ring-blue-500/20";
+
   return (
     <div className="p-8">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -61,11 +66,9 @@ export function AddUserForm() {
               type="text"
               id="name"
               {...register('name')}
-              className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 ${
-                errors.name 
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' 
-                  : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500/20'
-              } bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-4 focus:outline-none`}
+              className={`${inputBaseClasses} ${
+                errors.name ? inputErrorClasses : inputNormalClasses
+              }`}
               placeholder="Enter full name"
             />
             {errors.name && (
@@ -86,11 +89,9 @@ export function AddUserForm() {
               type="text"
               id="username"
               {...register('username')}
-              className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 ${
-                errors.username 
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' 
-                  : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500/20'
-              } bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-4 focus:outline-none`}
+              className={`${inputBaseClasses} ${
+                errors.username ? inputErrorClasses : inputNormalClasses
+              }`}
               placeholder="Choose a username"
             />
             {errors.username && (
@@ -111,11 +112,9 @@ export function AddUserForm() {
               type="email"
               id="email"
               {...register('email')}
-              className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 ${
-                errors.email 
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' 
-                  : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500/20'
-              } bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-4 focus:outline-none`}
+              className={`${inputBaseClasses} ${
+                errors.email ? inputErrorClasses : inputNormalClasses
+              }`}
               placeholder="user@example.com"
             />
             {errors.email && (
@@ -136,11 +135,9 @@ export function AddUserForm() {
               type="tel"
               id="phone"
               {...register('phone')}
-              className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 ${
-                errors.phone 
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' 
-                  : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500/20'
-              } bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-4 focus:outline-none`}
+              className={`${inputBaseClasses} ${
+                errors.phone ? inputErrorClasses : inputNormalClasses
+              }`}
               placeholder="+1 (555) 123-4567"
             />
             {errors.phone && (
@@ -162,7 +159,7 @@ export function AddUserForm() {
               type="text"
               id="website"
               {...register('website')}
-              className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none transition-all duration-300"
+              className={`${inputBaseClasses} ${inputNormalClasses}`}
               placeholder="www.example.com"
             />
           </div>
@@ -177,11 +174,9 @@ export function AddUserForm() {
               type="text"
               id="company"
               {...register('company')}
-              className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 ${
-                errors.company 
-                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' 
-                  : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500/20'
-              } bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-4 focus:outline-none`}
+              className={`${inputBaseClasses} ${
+                errors.company ? inputErrorClasses : inputNormalClasses
+              }`}
               placeholder="Company name"
             />
             {errors.company && (

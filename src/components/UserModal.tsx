@@ -125,7 +125,7 @@ export function UserModal({ user, onClose }: UserModalProps) {
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-4 border border-blue-200 dark:border-blue-800">
               <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">{user.company.name}</h4>
               <p className="text-sm text-gray-600 dark:text-gray-400 italic">"{user.company.catchPhrase}"</p>
-              <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">{user.company.bs}</p>
+              <p className="text-xs text-gray-500 mt-1">{user.company.bs}</p>
             </div>
           </div>
         </div>

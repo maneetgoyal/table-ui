@@ -28,6 +28,11 @@ export function UsersTable() {
     ) : <span className="ml-2 text-gray-400">⇅</span>;
   };
 
+  // Shared classes to reduce redundancy
+  const headerBaseClasses = "px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors";
+  const cellClasses = "px-6 py-4 whitespace-nowrap";
+  const textClasses = "text-sm text-gray-900 dark:text-white";
+
   return (
     <div className="space-y-4">
       {/* Search Section */}
@@ -79,28 +84,28 @@ export function UsersTable() {
             <tr>
               <th 
                 scope="col" 
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors w-2/5" 
+                className={`${headerBaseClasses} w-2/5`}
                 onClick={() => handleSortClick('name')}
               >
                 Name {getSortIndicator('name')}
               </th>
               <th 
                 scope="col" 
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors w-1/5" 
+                className={`${headerBaseClasses} w-1/5`}
                 onClick={() => handleSortClick('username')}
               >
                 Username {getSortIndicator('username')}
               </th>
               <th 
                 scope="col" 
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors w-1/4" 
+                className={`${headerBaseClasses} w-1/4`}
                 onClick={() => handleSortClick('email')}
               >
                 Email {getSortIndicator('email')}
               </th>
               <th 
                 scope="col" 
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors w-1/6" 
+                className={`${headerBaseClasses} w-1/6`}
                 onClick={() => handleSortClick('website')}
               >
                 Website {getSortIndicator('website')}
@@ -129,24 +134,24 @@ export function UsersTable() {
                   onClick={() => handleRowClick(user)}
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className={cellClasses}>
                     <div className="flex items-center">
                       <div className="size-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white text-base font-bold shadow-lg">
                         {user.name.charAt(0).toUpperCase()}
                       </div>
                       <div className="ml-3">
-                        <div className="text-sm font-medium text-gray-900 dark:text-white">{user.name}</div>
+                        <div className={`${textClasses} font-medium`}>{user.name}</div>
                         <div className="text-sm text-gray-500 dark:text-gray-400">{user.company.name}</div>
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-sm text-gray-900 dark:text-white">@{user.username}</span>
+                  <td className={cellClasses}>
+                    <span className={textClasses}>@{user.username}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900 dark:text-white">{user.email}</div>
+                  <td className={cellClasses}>
+                    <div className={textClasses}>{user.email}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className={cellClasses}>
                     <a 
                       href={`https://${user.website}`}
                       target="_blank" 

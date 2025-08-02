@@ -58,7 +58,7 @@ export function Layout() {
             <p className="text-gray-600 dark:text-gray-400 text-sm">
               User Dashboard © {new Date().getFullYear()} • Built with ❤️ using React & TypeScript
             </p>
-            <div className="mt-2 flex justify-center space-x-4 text-xs text-gray-500 dark:text-gray-500">
+            <div className="mt-2 flex justify-center space-x-4 text-xs text-gray-500">
               <span className="flex items-center">⚡ Powered by Vite</span>
               <span className="flex items-center">🎨 Styled with Tailwind</span>
               <span className="flex items-center">🔧 TypeScript Ready</span>
