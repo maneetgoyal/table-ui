@@ -16,12 +16,6 @@
     background-color: #f9fafb;
   }
 
-  @media (prefers-color-scheme: dark) {
-    body {
-      background-color: #111827;
-    }
-  }
-
   h1 {
     font-size: 1.875rem;
     font-weight: 700;
