@@ -51,7 +51,7 @@ export function UsersListPage() {
       
       {/* Users Table */}
       {!loading && !error && (
-        <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 overflow-hidden">
+        <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 overflow-hidden p-6">
           <UsersTable />
         </div>
       )}
