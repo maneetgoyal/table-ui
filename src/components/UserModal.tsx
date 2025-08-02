@@ -22,7 +22,7 @@ export function UserModal({ user, onClose }: UserModalProps) {
       ></div>
       
       {/* Modal */}
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-lg mx-4 z-10 transform transition-all duration-300 animate-slideUp">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg mx-4 z-10 transform transition-all duration-300 animate-slideUp">
         {/* Header */}
         <div className="relative bg-gradient-to-r from-blue-500 to-purple-600 rounded-t-2xl p-6 text-white">
           <div className="flex items-center space-x-4">
@@ -49,14 +49,14 @@ export function UserModal({ user, onClose }: UserModalProps) {
         <div className="p-6 space-y-6 max-h-96 overflow-y-auto">
           {/* Contact Information */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center">
               📞 Contact Information
             </h3>
             <div className="grid grid-cols-1 gap-4">
-              <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Email Address</p>
+              <div className="bg-gray-50 rounded-xl p-4">
+                <p className="text-sm font-medium text-gray-500 mb-1">Email Address</p>
                 <div className="flex items-center space-x-2">
-                  <span className="text-gray-900 dark:text-gray-100">{user.email}</span>
+                  <span className="text-gray-900">{user.email}</span>
                   <button 
                     onClick={() => navigator.clipboard.writeText(user.email)}
                     className="text-blue-500 hover:text-blue-600 transition-colors"
@@ -67,10 +67,10 @@ export function UserModal({ user, onClose }: UserModalProps) {
                 </div>
               </div>
               
-              <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Phone Number</p>
+              <div className="bg-gray-50 rounded-xl p-4">
+                <p className="text-sm font-medium text-gray-500 mb-1">Phone Number</p>
                 <div className="flex items-center space-x-2">
-                  <span className="text-gray-900 dark:text-gray-100">{user.phone}</span>
+                  <span className="text-gray-900">{user.phone}</span>
                   <button 
                     onClick={() => navigator.clipboard.writeText(user.phone)}
                     className="text-blue-500 hover:text-blue-600 transition-colors"
@@ -85,11 +85,11 @@ export function UserModal({ user, onClose }: UserModalProps) {
           
           {/* Address */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center">
               📍 Address
             </h3>
-            <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
-              <div className="text-gray-900 dark:text-gray-100 leading-relaxed">
+            <div className="bg-gray-50 rounded-xl p-4">
+              <div className="text-gray-900 leading-relaxed">
                 {user.address.street}, {user.address.suite}<br />
                 {user.address.city}, {user.address.zipcode}
               </div>
@@ -98,16 +98,16 @@ export function UserModal({ user, onClose }: UserModalProps) {
           
           {/* Online Presence */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center">
               🌐 Online Presence
             </h3>
-            <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
-              <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Website</p>
+            <div className="bg-gray-50 rounded-xl p-4">
+              <p className="text-sm font-medium text-gray-500 mb-2">Website</p>
               <a 
                 href={`https://${user.website}`}
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors duration-200"
+                className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200"
               >
                 <span>{user.website}</span>
                 <svg className="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -119,19 +119,19 @@ export function UserModal({ user, onClose }: UserModalProps) {
           
           {/* Company */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center">
               🏢 Company
             </h3>
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-4 border border-blue-200 dark:border-blue-800">
-              <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">{user.company.name}</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400 italic">"{user.company.catchPhrase}"</p>
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200">
+              <h4 className="font-semibold text-gray-900 mb-2">{user.company.name}</h4>
+              <p className="text-sm text-gray-600 italic">"{user.company.catchPhrase}"</p>
               <p className="text-xs text-gray-500 mt-1">{user.company.bs}</p>
             </div>
           </div>
         </div>
         
         {/* Footer */}
-        <div className="p-6 bg-gray-50 dark:bg-gray-700 rounded-b-2xl">
+        <div className="p-6 bg-gray-50 rounded-b-2xl">
           <button
             onClick={onClose}
             className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-4 focus:ring-blue-500/25 transition-all duration-300 transform hover:scale-105"
