@@ -29,8 +29,8 @@ export function UsersTable() {
   };
 
   // Shared classes to reduce redundancy
-  const headerBaseClasses = "px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors";
-  const cellClasses = "px-6 py-4 whitespace-nowrap";
+  const headerBaseClasses = "px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors";
+  const cellClasses = "px-6 py-6";
   const textClasses = "text-sm text-gray-900 dark:text-white";
 
   return (
@@ -84,21 +84,21 @@ export function UsersTable() {
             <tr>
               <th 
                 scope="col" 
-                className={`${headerBaseClasses} w-2/5`}
+                className={`${headerBaseClasses} w-1/3`}
                 onClick={() => handleSortClick('name')}
               >
                 Name {getSortIndicator('name')}
               </th>
               <th 
                 scope="col" 
-                className={`${headerBaseClasses} w-1/5`}
+                className={`${headerBaseClasses} w-1/6`}
                 onClick={() => handleSortClick('username')}
               >
                 Username {getSortIndicator('username')}
               </th>
               <th 
                 scope="col" 
-                className={`${headerBaseClasses} w-1/4`}
+                className={`${headerBaseClasses} w-1/3`}
                 onClick={() => handleSortClick('email')}
               >
                 Email {getSortIndicator('email')}
@@ -139,24 +139,24 @@ export function UsersTable() {
                       <div className="size-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white text-base font-bold shadow-lg">
                         {user.name.charAt(0).toUpperCase()}
                       </div>
-                      <div className="ml-3">
-                        <div className={`${textClasses} font-medium`}>{user.name}</div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">{user.company.name}</div>
+                      <div className="ml-4">
+                        <div className={`${textClasses} font-medium leading-relaxed`}>{user.name}</div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">{user.company.name}</div>
                       </div>
                     </div>
                   </td>
                   <td className={cellClasses}>
-                    <span className={textClasses}>@{user.username}</span>
+                    <span className={`${textClasses} leading-relaxed`}>@{user.username}</span>
                   </td>
                   <td className={cellClasses}>
-                    <div className={textClasses}>{user.email}</div>
+                    <div className={`${textClasses} leading-relaxed break-words`}>{user.email}</div>
                   </td>
                   <td className={cellClasses}>
                     <a 
                       href={`https://${user.website}`}
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+                      className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors leading-relaxed break-words inline-block"
                       onClick={(e) => e.stopPropagation()}
                     >
                       {user.website}
