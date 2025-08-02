@@ -27,6 +27,6 @@ export interface UserFormData {
   username: string;
   email: string;
   phone: string;
-  website: string;
+    website?: string;
   company: string;
 }

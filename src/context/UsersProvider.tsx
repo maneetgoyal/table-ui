@@ -97,7 +97,7 @@ export function UsersProvider({ children }: UsersProviderProps) {
       username: userData.username,
       email: userData.email,
       phone: userData.phone,
-      website: userData.website,
+      website: userData.website || '',
       company: {
         name: userData.company,
         catchPhrase: '',
