@@ -41,124 +41,200 @@ export function AddUserForm() {
   };
 
   return (
-    <div className="w-full max-w-lg mx-auto">
-      <form onSubmit={handleSubmit(onSubmit)} className="bg-white dark:bg-gray-800 shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Add New User</h2>
-        
-        <div className="mb-4">
-          <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
-            Name*
-          </label>
-          <input
-            type="text"
-            id="name"
-            {...register('name')}
-            className={`shadow appearance-none border ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded w-full py-2 px-3 text-gray-700 dark:text-white dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
-            placeholder="John Doe"
-          />
-          {errors.name && (
-            <p className="text-red-500 text-xs italic mt-1">{errors.name.message}</p>
-          )}
+    <div className="p-8">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        {/* Form Header */}
+        <div className="text-center pb-6 border-b border-gray-200 dark:border-gray-700">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">👤 User Information</h2>
+          <p className="text-gray-600 dark:text-gray-400">Fill in the details to create a new user profile</p>
         </div>
         
-        <div className="mb-4">
-          <label htmlFor="username" className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
-            Username*
-          </label>
-          <input
-            type="text"
-            id="username"
-            {...register('username')}
-            className={`shadow appearance-none border ${errors.username ? 'border-red-500' : 'border-gray-300'} rounded w-full py-2 px-3 text-gray-700 dark:text-white dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
-            placeholder="johndoe"
-          />
-          {errors.username && (
-            <p className="text-red-500 text-xs italic mt-1">{errors.username.message}</p>
-          )}
+        {/* Form Fields Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Name Field */}
+          <div className="space-y-2">
+            <label htmlFor="name" className="flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">
+              <span className="mr-2">👤</span>
+              Full Name*
+            </label>
+            <input
+              type="text"
+              id="name"
+              {...register('name')}
+              className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 ${
+                errors.name 
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' 
+                  : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500/20'
+              } bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-4 focus:outline-none`}
+              placeholder="Enter full name"
+            />
+            {errors.name && (
+              <p className="flex items-center text-red-500 text-sm mt-1">
+                <span className="mr-1">⚠️</span>
+                {errors.name.message}
+              </p>
+            )}
+          </div>
+          
+          {/* Username Field */}
+          <div className="space-y-2">
+            <label htmlFor="username" className="flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">
+              <span className="mr-2">🏷️</span>
+              Username*
+            </label>
+            <input
+              type="text"
+              id="username"
+              {...register('username')}
+              className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 ${
+                errors.username 
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' 
+                  : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500/20'
+              } bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-4 focus:outline-none`}
+              placeholder="Choose a username"
+            />
+            {errors.username && (
+              <p className="flex items-center text-red-500 text-sm mt-1">
+                <span className="mr-1">⚠️</span>
+                {errors.username.message}
+              </p>
+            )}
+          </div>
+          
+          {/* Email Field */}
+          <div className="space-y-2">
+            <label htmlFor="email" className="flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">
+              <span className="mr-2">📧</span>
+              Email Address*
+            </label>
+            <input
+              type="email"
+              id="email"
+              {...register('email')}
+              className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 ${
+                errors.email 
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' 
+                  : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500/20'
+              } bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-4 focus:outline-none`}
+              placeholder="user@example.com"
+            />
+            {errors.email && (
+              <p className="flex items-center text-red-500 text-sm mt-1">
+                <span className="mr-1">⚠️</span>
+                {errors.email.message}
+              </p>
+            )}
+          </div>
+          
+          {/* Phone Field */}
+          <div className="space-y-2">
+            <label htmlFor="phone" className="flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">
+              <span className="mr-2">📱</span>
+              Phone Number*
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              {...register('phone')}
+              className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 ${
+                errors.phone 
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' 
+                  : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500/20'
+              } bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-4 focus:outline-none`}
+              placeholder="+1 (555) 123-4567"
+            />
+            {errors.phone && (
+              <p className="flex items-center text-red-500 text-sm mt-1">
+                <span className="mr-1">⚠️</span>
+                {errors.phone.message}
+              </p>
+            )}
+          </div>
+          
+          {/* Website Field */}
+          <div className="space-y-2">
+            <label htmlFor="website" className="flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">
+              <span className="mr-2">🌐</span>
+              Website
+              <span className="ml-1 text-gray-400 text-xs">(optional)</span>
+            </label>
+            <input
+              type="text"
+              id="website"
+              {...register('website')}
+              className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none transition-all duration-300"
+              placeholder="www.example.com"
+            />
+          </div>
+          
+          {/* Company Field */}
+          <div className="space-y-2">
+            <label htmlFor="company" className="flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">
+              <span className="mr-2">🏢</span>
+              Company*
+            </label>
+            <input
+              type="text"
+              id="company"
+              {...register('company')}
+              className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 ${
+                errors.company 
+                  ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' 
+                  : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500/20'
+              } bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-4 focus:outline-none`}
+              placeholder="Company name"
+            />
+            {errors.company && (
+              <p className="flex items-center text-red-500 text-sm mt-1">
+                <span className="mr-1">⚠️</span>
+                {errors.company.message}
+              </p>
+            )}
+          </div>
         </div>
         
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
-            Email*
-          </label>
-          <input
-            type="email"
-            id="email"
-            {...register('email')}
-            className={`shadow appearance-none border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded w-full py-2 px-3 text-gray-700 dark:text-white dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
-            placeholder="john@example.com"
-          />
-          {errors.email && (
-            <p className="text-red-500 text-xs italic mt-1">{errors.email.message}</p>
-          )}
-        </div>
-        
-        <div className="mb-4">
-          <label htmlFor="phone" className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
-            Phone*
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            {...register('phone')}
-            className={`shadow appearance-none border ${errors.phone ? 'border-red-500' : 'border-gray-300'} rounded w-full py-2 px-3 text-gray-700 dark:text-white dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
-            placeholder="123-456-7890"
-          />
-          {errors.phone && (
-            <p className="text-red-500 text-xs italic mt-1">{errors.phone.message}</p>
-          )}
-        </div>
-        
-        <div className="mb-4">
-          <label htmlFor="website" className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
-            Website
-          </label>
-          <input
-            type="text"
-            id="website"
-            {...register('website')}
-            className={`shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 dark:text-white dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
-            placeholder="example.com"
-          />
-        </div>
-        
-        <div className="mb-6">
-          <label htmlFor="company" className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
-            Company*
-          </label>
-          <input
-            type="text"
-            id="company"
-            {...register('company')}
-            className={`shadow appearance-none border ${errors.company ? 'border-red-500' : 'border-gray-300'} rounded w-full py-2 px-3 text-gray-700 dark:text-white dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
-            placeholder="Acme Inc."
-          />
-          {errors.company && (
-            <p className="text-red-500 text-xs italic mt-1">{errors.company.message}</p>
-          )}
-        </div>
-        
-        <div className="flex items-center justify-between">
+        {/* Form Actions */}
+        <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200 dark:border-gray-700">
           <button
             type="submit"
             disabled={isSubmitting}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:bg-blue-300 disabled:cursor-not-allowed"
+            className="flex-1 px-6 py-4 bg-gradient-to-r from-green-500 to-teal-600 text-white font-semibold rounded-xl hover:from-green-600 hover:to-teal-700 focus:outline-none focus:ring-4 focus:ring-green-500/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100"
           >
-            {isSubmitting ? 'Adding...' : 'Add User'}
+            {isSubmitting ? (
+              <span className="flex items-center justify-center">
+                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Adding User...
+              </span>
+            ) : (
+              <span className="flex items-center justify-center">
+                <span className="mr-2">✨</span>
+                Add User
+              </span>
+            )}
           </button>
           <button
             type="button"
             onClick={() => navigate('/')}
-            className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="flex-1 px-6 py-4 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-xl focus:outline-none focus:ring-4 focus:ring-gray-500/25 transition-all duration-300 transform hover:scale-105"
           >
-            Cancel
+            <span className="flex items-center justify-center">
+              <span className="mr-2">↩️</span>
+              Cancel
+            </span>
           </button>
         </div>
       </form>
       
-      <p className="text-center text-gray-500 text-xs dark:text-gray-400">
-        Fields marked with * are required
-      </p>
+      {/* Help Text */}
+      <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
+        <p className="text-center text-blue-700 dark:text-blue-300 text-sm">
+          <span className="mr-1">💡</span>
+          <strong>Tip:</strong> Make sure all required fields are filled out correctly before submitting
+        </p>
+      </div>
     </div>
   );
 }
