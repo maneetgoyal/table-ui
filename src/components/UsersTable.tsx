@@ -18,34 +18,41 @@ export function UsersTable() {
   // Helper to render sort indicator
   const getSortIndicator = (key: keyof User) => {
     if (sortConfig.key !== key) {
-      return <span className="ml-2 text-gray-400">⇅</span>;
+      return <span className="ms-2 text-zinc-400">⇅</span>;
     }
     
     return sortConfig.direction === 'ascending' ? (
-      <span className="ml-2 text-blue-500">↑</span>
+      <span className="ms-2 text-sky-600 dark:text-sky-400">↑</span>
     ) : sortConfig.direction === 'descending' ? (
-      <span className="ml-2 text-blue-500">↓</span>
-    ) : <span className="ml-2 text-gray-400">⇅</span>;
+      <span className="ms-2 text-sky-600 dark:text-sky-400">↓</span>
+    ) : <span className="ms-2 text-zinc-400">⇅</span>;
   };
 
-  // Shared classes to reduce redundancy
-  const headerBaseClasses = "px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors";
-  const cellClasses = "px-6 py-6";
-  const textClasses = "text-sm text-gray-900 dark:text-white";
+  // Helper to get aria-sort value
+  const getAriaSort = (key: keyof User) => {
+    if (sortConfig.key !== key) return "none";
+    return sortConfig.direction === 'ascending' ? "ascending" : 
+           sortConfig.direction === 'descending' ? "descending" : "none";
+  };
+
+  // Density support
+  const isCompact = false; // Can be made configurable
+  const headerClasses = isCompact ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm";
+  const cellClasses = isCompact ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm";
 
   return (
     <div className="space-y-4">
       {/* Search Section */}
       <div className="relative max-w-md">
-        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <svg className="size-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="absolute inset-y-0 left-0 ps-3 flex items-center pointer-events-none">
+          <svg className="size-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
           </svg>
         </div>
         <input 
           type="search"
           id="user-search" 
-          className="w-full pl-10 pr-10 py-2 text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:border-blue-400 transition-colors placeholder-gray-500 dark:placeholder-gray-400" 
+          className="w-full ps-10 pe-10 py-2 text-sm bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-2 focus:outline-offset-2 focus:outline-sky-500 transition-colors placeholder-zinc-500 dark:placeholder-zinc-400" 
           placeholder="Search users..." 
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -54,7 +61,7 @@ export function UsersTable() {
         {searchTerm && (
           <button
             onClick={() => setSearchTerm('')}
-            className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+            className="absolute inset-y-0 right-0 pe-3 flex items-center text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 focus:outline-2 focus:outline-offset-2 focus:outline-sky-500"
           >
             <svg className="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
@@ -64,7 +71,7 @@ export function UsersTable() {
       </div>
       
       {/* Results Count */}
-      <div className="flex justify-between items-center text-sm text-gray-600 dark:text-gray-400">
+      <div className="flex justify-between items-center text-sm text-zinc-600 dark:text-zinc-400">
         <span>
           {searchTerm ? (
             <>Found {filteredUsers.length} users matching "{searchTerm}"</>
@@ -78,44 +85,48 @@ export function UsersTable() {
       </div>
       
       {/* Users table */}
-      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
-        <table className="w-full table-auto">
-          <thead className="bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
-            <tr>
-              <th 
-                scope="col" 
-                className={`${headerBaseClasses} w-1/3`}
-                onClick={() => handleSortClick('name')}
-              >
-                Name {getSortIndicator('name')}
+      <div className="overflow-x-auto w-full rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm">
+        <table className="w-full table-auto text-left align-middle">
+          <thead>
+            <tr className="sticky top-0 z-10 bg-inherit">
+              <th scope="col" className="w-1/3" aria-sort={getAriaSort('name')}>
+                <button 
+                  onClick={() => handleSortClick('name')}
+                  className={`${headerClasses} font-semibold uppercase tracking-wide text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors w-full text-left focus:outline-2 focus:outline-offset-2 focus:outline-sky-500`}
+                >
+                  Name {getSortIndicator('name')}
+                </button>
               </th>
-              <th 
-                scope="col" 
-                className={`${headerBaseClasses} w-1/6`}
-                onClick={() => handleSortClick('username')}
-              >
-                Username {getSortIndicator('username')}
+              <th scope="col" className="w-1/6" aria-sort={getAriaSort('username')}>
+                <button 
+                  onClick={() => handleSortClick('username')}
+                  className={`${headerClasses} font-semibold uppercase tracking-wide text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors w-full text-left focus:outline-2 focus:outline-offset-2 focus:outline-sky-500`}
+                >
+                  Username {getSortIndicator('username')}
+                </button>
               </th>
-              <th 
-                scope="col" 
-                className={`${headerBaseClasses} w-1/3`}
-                onClick={() => handleSortClick('email')}
-              >
-                Email {getSortIndicator('email')}
+              <th scope="col" className="w-1/3" aria-sort={getAriaSort('email')}>
+                <button 
+                  onClick={() => handleSortClick('email')}
+                  className={`${headerClasses} font-semibold uppercase tracking-wide text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors w-full text-left focus:outline-2 focus:outline-offset-2 focus:outline-sky-500`}
+                >
+                  Email {getSortIndicator('email')}
+                </button>
               </th>
-              <th 
-                scope="col" 
-                className={`${headerBaseClasses} w-1/6`}
-                onClick={() => handleSortClick('website')}
-              >
-                Website {getSortIndicator('website')}
+              <th scope="col" className="w-1/6" aria-sort={getAriaSort('website')}>
+                <button 
+                  onClick={() => handleSortClick('website')}
+                  className={`${headerClasses} font-semibold uppercase tracking-wide text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors w-full text-left focus:outline-2 focus:outline-offset-2 focus:outline-sky-500`}
+                >
+                  Website {getSortIndicator('website')}
+                </button>
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+          <tbody>
             {filteredUsers.length === 0 ? (
               <tr>
-                <td colSpan={4} className="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
+                <td colSpan={4} className="px-4 py-12 text-center text-zinc-500 dark:text-zinc-400">
                   {searchTerm ? (
                     <div>
                       <p className="font-medium">No users found matching "{searchTerm}"</p>
@@ -130,33 +141,33 @@ export function UsersTable() {
               filteredUsers.map((user, index) => (
                 <tr 
                   key={user.id} 
-                  className="hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer transition-colors"
+                  className="odd:bg-white even:bg-zinc-50 dark:odd:bg-zinc-900 dark:even:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer border-b border-zinc-200 dark:border-zinc-800"
                   onClick={() => handleRowClick(user)}
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
-                  <td className={cellClasses}>
+                  <td className={`${cellClasses} text-zinc-800 dark:text-zinc-200`}>
                     <div className="flex items-center">
-                      <div className="size-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white text-base font-bold shadow-lg">
+                      <div className="size-10 rounded-full flex items-center justify-center text-white text-base font-bold bg-gradient-to-br from-sky-600 to-sky-700 shadow">
                         {user.name.charAt(0).toUpperCase()}
                       </div>
-                      <div className="ml-4">
-                        <div className={`${textClasses} font-medium leading-relaxed`}>{user.name}</div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">{user.company.name}</div>
+                      <div className="ms-4">
+                        <div className="font-medium text-zinc-800 dark:text-zinc-200">{user.name}</div>
+                        <div className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">{user.company.name}</div>
                       </div>
                     </div>
                   </td>
-                  <td className={cellClasses}>
-                    <span className={`${textClasses} leading-relaxed`}>@{user.username}</span>
+                  <td className={`${cellClasses} text-zinc-800 dark:text-zinc-200`}>
+                    <span className="whitespace-nowrap">@{user.username}</span>
                   </td>
-                  <td className={cellClasses}>
-                    <div className={`${textClasses} leading-relaxed break-words`}>{user.email}</div>
+                  <td className={`${cellClasses} text-zinc-800 dark:text-zinc-200`}>
+                    <div className="truncate max-w-[16rem]">{user.email}</div>
                   </td>
-                  <td className={cellClasses}>
+                  <td className={`${cellClasses} text-zinc-800 dark:text-zinc-200`}>
                     <a 
                       href={`https://${user.website}`}
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors leading-relaxed break-words inline-block"
+                      className="text-sky-600 dark:text-sky-400 hover:text-sky-800 dark:hover:text-sky-300 transition-colors inline-block truncate max-w-[16rem] focus:outline-2 focus:outline-offset-2 focus:outline-sky-500"
                       onClick={(e) => e.stopPropagation()}
                     >
                       {user.website}
